@@ -10,7 +10,7 @@ const reposGrid = props => {
                 const { login, avatar_url } = owner
 
                 return (
-                    <li key={index} className='repo bg-light'>
+                    <li key={index} className='card bg-light'>
                         <h4 className='header-lg center-text'>#{index +1}</h4>
                         <img
                             className='avatar'

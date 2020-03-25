@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 const languagesNav = props => {
     const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python']
+    const { selected, onUpdateLanguage } = props
 
     return (
         <ul className='flex-center'>
@@ -10,8 +11,8 @@ const languagesNav = props => {
                 <li key={index}>
                     <button
                         className='btn-clear nav-link'
-                        style={language === props.selected ? {color: 'rgb(187, 46, 31)'} : null}
-                        onClick={() => props.onUpdateLanguage(language)}>
+                        style={language === selected ? {color: 'rgb(187, 46, 31)'} : null}
+                        onClick={() => onUpdateLanguage(language)}>
                             {language}
                         </button>
                 </li>

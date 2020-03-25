@@ -57,7 +57,7 @@ class Popular extends Component {
 
                 {this.isLoading() && <p>LOADING</p>}
 
-                {error && <p>{error}</p>}
+                {error && <p className='center-text error'>{error}</p>}
 
                 {repos[selectedLanguage] && <RepostGrid repos={repos[selectedLanguage]} />}
             </Fragment>
