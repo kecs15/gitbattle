@@ -27,13 +27,26 @@ class Battle extends Component {
         this.setState(updatedObject)
     }
 
+    resetBattle = () => {
+        let updatedObject = updateObject(this.state, {
+            playerOne: null,
+            playerTwo: null,
+            battle: false
+        })
+        this.setState(updatedObject)
+    }
+
     render() {
         const { playerOne, playerTwo, battle } = this.state
 
         if(battle === true) {
-            return <Result playerOne={playerOne} playerTwo={playerTwo} />
+            return <Result 
+                        playerOne={playerOne} 
+                        playerTwo={playerTwo} 
+                        onReset={this.resetBattle}
+                    />
         }
-
+        
         return (
             <Fragment>
                 <Instructions />
