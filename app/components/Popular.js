@@ -3,6 +3,7 @@ import LanguagesNav from './LanguagesNav'
 import RepostGrid from './ReposGrid';
 import { fetchPopularRepos } from '../utils/api'
 import { updateObject } from '../utils/updateObject'
+import Loading from './Loading'
 
 class Popular extends Component {
 
@@ -31,7 +32,6 @@ class Popular extends Component {
                      this.setState(updatedObject)
                 })
                 .catch(error => {
-                    console.warn('Error fetching repos: ', error)
                     updatedObject = updateObject(this.state, {error: error})
                     this.setState(updatedObject)
                 })
@@ -55,7 +55,7 @@ class Popular extends Component {
                 />
                 
 
-                {this.isLoading() && <p>LOADING</p>}
+                {this.isLoading() && <Loading text='Fetching repositories'/>}
 
                 {error && <p className='center-text error'>{error}</p>}
 

@@ -4,6 +4,7 @@ import { updateObject } from '../utils/updateObject'
 import Card from './Card'
 import ProfileList from './ProfileList'
 import PropTypes from 'prop-types'
+import Loading from './Loading'
 
 
 class Result extends Component {
@@ -30,7 +31,7 @@ class Result extends Component {
         const { winner, loser, error, loading } = this.state
 
         if(loading) {
-            return <p>LOADING</p>
+            return <Loading text='Battling' />
         }
 
         if(error) {
