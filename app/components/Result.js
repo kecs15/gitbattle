@@ -5,6 +5,8 @@ import Card from './Card'
 import ProfileList from './ProfileList'
 import PropTypes from 'prop-types'
 import Loading from './Loading'
+import queryString from 'query-string'
+import { Link } from 'react-router-dom'
 
 
 class Result extends Component {
@@ -15,7 +17,7 @@ class Result extends Component {
         loading: true
     }
     componentDidMount() {
-        const { playerOne, playerTwo } = this.props
+        const { playerOne, playerTwo } = queryString.parse(this.props.location.search)
         let updatedObject
         battle([playerOne, playerTwo])
             .then(players => {
@@ -62,21 +64,16 @@ class Result extends Component {
                         <ProfileList profile={loser.profile} />
                     </Card>
                 </div>
-                <button
-                    onClick={this.props.onReset}
+                <Link
+                    to='/battle'
                     className='btn dark-btn btn-space'
                 >
                     Reset    
-                </button> 
+                </Link> 
             </Fragment>
         )
     }
 }
 
-Result.propTypes = {
-    playerOne: PropTypes.string.isRequired,
-    playerTwo: PropTypes.string.isRequired,
-    onReset: PropTypes.func.isRequired
-}
 
 export default Result

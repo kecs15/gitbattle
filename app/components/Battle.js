@@ -3,13 +3,12 @@ import Instructions from './Instructions'
 import PlayerInput from './PlayerInput'
 import { updateObject } from '../utils/updateObject'
 import PlayerPreview from './PlayerPreview'
-import Result from './Result'
+import { Link } from 'react-router-dom'
 
 class Battle extends Component {
     state = {
         playerOne: null,
-        playerTwo: null,
-        battle: false
+        playerTwo: null
     }
 
     handleSubmit = (id, player) => {
@@ -27,27 +26,11 @@ class Battle extends Component {
         this.setState(updatedObject)
     }
 
-    resetBattle = () => {
-        let updatedObject = updateObject(this.state, {
-            playerOne: null,
-            playerTwo: null,
-            battle: false
-        })
-        this.setState(updatedObject)
-    }
-
     render() {
-        const { playerOne, playerTwo, battle } = this.state
-
-        if(battle === true) {
-            return <Result 
-                        playerOne={playerOne} 
-                        playerTwo={playerTwo} 
-                        onReset={this.resetBattle}
-                    />
-        }
+        const { playerOne, playerTwo } = this.state
         
         return (
+            
             <Fragment>
                 <Instructions />
                 <div className='player-container'>
@@ -82,12 +65,16 @@ class Battle extends Component {
                         }
                     </div>
                     {playerOne && playerTwo && (
-                        <button
+                        <Link
                             className='btn dark-btn btn-space'
                             onClick={this.setBattleTrue}
+                            to={{
+                                pathname: '/battle/results',
+                                search: `?playerOne=${playerOne}&playerTwo=${playerTwo}`
+                            }}
                         >
                             Battle
-                        </button>
+                        </Link>
                     )}
                 </div>
             </Fragment>
